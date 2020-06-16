@@ -35,6 +35,7 @@ All of the analysis is done in run_analysis.R script. Following is the descripti
 1. Splits the data by Subject Name and Activity Name variables in list into splitData variable.
 1. Iterates all of the elements in the list and calculates mean of every numeric column in each element into colMeansDataList variable.
 1. Converts colMeansDataList variable into clean data frame in colMeansData variable.
+1. Export result in analysis_result.txt file using write.table function.
 
 
 

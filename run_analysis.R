@@ -88,3 +88,6 @@ colMeansDataList <- lapply(splitData, function(x){
 colMeansData = as.data.frame(colMeansDataList, stringsAsFactors = FALSE)
 
 head(colMeansData)
+
+print("Saving to analysis_result.txt.")
+write.table(unlist(colMeansDataList), file = "analysis_result.txt", row.names = FALSE, col.names=FALSE)
