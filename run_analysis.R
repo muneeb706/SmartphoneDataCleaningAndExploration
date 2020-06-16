@@ -90,4 +90,4 @@ colMeansData = as.data.frame(colMeansDataList, stringsAsFactors = FALSE)
 head(colMeansData)
 
 print("Saving to analysis_result.txt.")
-write.table(unlist(colMeansDataList), file = "analysis_result.txt", row.names = FALSE, col.names=FALSE)
+write.table(colMeansData, file = "analysis_result.txt", row.names = FALSE)
