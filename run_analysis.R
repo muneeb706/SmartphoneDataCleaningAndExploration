@@ -64,9 +64,22 @@ head(activityIdsMerged$activityName)
 
 # 4. Appropriately labels the data set with descriptive variable names.
 
-setnames(subjectDataMerged, old = "V1", new = "subjectName", skip_absent=TRUE)
+setnames(subjectDataMerged, old = "V1", new = "subjectId", skip_absent=TRUE)
 print("Combining Subject, Activity, and other column names extracted in step 1 into one data.frame")
 finalData <- cbind(subjectDataMerged, activityIdsMerged, testTrainMerged)
+
+names(finalData)<-gsub("^t", "time", names(finalData))
+names(finalData)<-gsub("Acc", "Accelerometer", names(finalData), ignore.case = TRUE)
+names(finalData)<-gsub("Mag", "Magnitude", names(finalData), ignore.case = TRUE)
+names(finalData)<-gsub("^f", "Frequency", names(finalData))
+names(finalData)<-gsub("-mean", "Mean", names(finalData), ignore.case = TRUE)
+names(finalData)<-gsub("-std", "STD", names(finalData), ignore.case = TRUE)
+names(finalData)<-gsub("-freq", "Frequency", names(finalData), ignore.case = TRUE)
+names(finalData)<-gsub("BodyBody", "Body", names(finalData))
+names(finalData)<-gsub("\\(", "", names(finalData))
+names(finalData)<-gsub("\\)", "", names(finalData))
+names(finalData)<-gsub("\\-", ".", names(finalData))
+
 head(finalData)
 colnames(finalData)
 
@@ -74,20 +87,10 @@ colnames(finalData)
 # 5. From the data set in step 4, creates a second, independent tidy data set with the average 
 #    of each variable for each activity and each subject.
 
-print("Splitting data by Subject Name and Activity Name.")
-splitData <- split(finalData, list(finalData$subjectName, finalData$activityName))
+print("Splitting data by Subject Name and Activity Name and calculating mean accordingly.")
 
-print("Calculating means of each numeric column")
+finalData <-aggregate(. ~subjectId + activityName, finalData, mean)
+finalData <-finalData[order(finalData$subjectId,finalData$activityName),]
 
-colMeansDataList <- lapply(splitData, function(x){
-    
-    colMeans(x[3:ncol(finalData)])
-})
-
-# converting list to data frame
-colMeansData = as.data.frame(colMeansDataList, stringsAsFactors = FALSE)
-
-head(colMeansData)
-
-print("Saving to analysis_result.txt.")
-write.table(colMeansData, file = "analysis_result.txt", row.names = FALSE)
+print("Exporting Final Clean Dataset.")
+write.table(finalData, file = "analysis_result.txt",row.name=FALSE)

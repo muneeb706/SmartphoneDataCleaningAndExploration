@@ -29,12 +29,12 @@ All of the analysis is done in run_analysis.R script. Following is the descripti
 ## Step 4 - Appropriately labels the data set with descriptive variable names
 
 1. Does a column wise Merging of subject, activity and other test and train data extracted in previous steps into finalData variable.
+1. Column Names in finalData variable are renamed.
 
 ## Step 5 - From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject
 
-1. Splits the data by Subject Name and Activity Name variables in list into splitData variable.
-1. Iterates all of the elements in the list and calculates mean of every numeric column in each element into colMeansDataList variable.
-1. Converts colMeansDataList variable into clean data frame in colMeansData variable.
+1. Calculate mean of all the columns.
+1. Groups the data by Subject Id and Activity Name.
 1. Export result in analysis_result.txt file using write.table function.
 
 
