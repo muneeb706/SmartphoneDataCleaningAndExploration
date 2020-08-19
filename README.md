@@ -1,4 +1,4 @@
-# Smartphone Data Cleaning And Exploration
+# Human Activity Recognition
 
 This project performs data cleaning and data exploration steps on the [Human Activity Recognition Using Smartphones Data Set](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones) in R programming language. The dataset can be downloaded from the following link:
 [https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip)
